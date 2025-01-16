@@ -21,13 +21,13 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "Pic.png"
   name             : "Yihao Wang"
   pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
+  bio              : "I am seeking for a RA position. If you have interest on me, plz contact me!"
   location         : "Los Angels"
   employer         : "University of Southern California"
-  uri              : # URL
+  uri              : https://yihao-dd.github.io
   email            : "yh82620027@gmail.com" 
 
   # Academic websites
