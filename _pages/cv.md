@@ -32,7 +32,7 @@ Work experience
   * Wonders Information Co., Ltd.
   * Duties included: Participated in the construction project of the Social Security Card Replacement Platform, analyzed requirements for the project, and completed the system architecture design and module division. Utilized Java to implement critical functionalities, including user registration, login, and card replacement, debugged and optimized these functions and contributed to the construction of the associated database.
  
-* Summer 2022:  Java intern
+* Summer 2022: Intern Backend engineer
   * Anjia VISION Information Technology Co., Ltd.
   * Duties included: As membership of Backend server department. Took the role of developing API. Completed the development of three APIs, which provided users with video signal processing and interaction functions respectively.
  
