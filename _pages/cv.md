@@ -11,21 +11,18 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* M.S. in Applied Data Science, University of Sothern California, 2026(expected)
+* B.S. in Computer Science and Technology, Hong Kong Baptist University, 2024
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * Github University
+* Fall 2024: Intern Backend engineer
+  * Henan Cdcenter network technology Co., Ltd.
   * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
 
 * Fall 2015: Research Assistant
   * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+  * Duties included: Building data warehouses based on the Hadoop ecosystem, developing Python ETL scripts to clean relational data (MySQL) and unstructured data (MongoDB), and performing distributed computing via Hive/Spark to support business reporting and real-time analytics.
 
 * Summer 2015: Research Assistant
   * Github University
