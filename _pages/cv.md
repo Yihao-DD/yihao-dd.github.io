@@ -55,12 +55,11 @@ Work experience
   
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* **Programming:** Python, R, SQL, C, Excel VBA, Git, Linux/Bash, Jupyter, VS Code, Docker
+* **Data Processing:** Pandas, NumPy, Apache Spark, Hadoop, Hive
+* **Machine Learning:** Scikit-learn, XGBoost, SVM, Decision Trees, PCA, Clustering
+* **Deep Learning:** PyTorch, TensorFlow, Keras, BERT
+* **Workflow Tools:** Git, Jupyter Notebook, Linux, VS Code
 
 Publications
 ======
