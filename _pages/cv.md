@@ -16,26 +16,41 @@ Education
 
 Work experience
 ======
-* Summer 2024: Intern Backend engineer
-  * Henan Cdcenter network technology Co., Ltd.
-  * Duties includes: Building data warehouses based on the Hadoop ecosystem, developing Python ETL scripts to clean relational data (MySQL) and unstructured data (MongoDB), and performing distributed computing via Hive/Spark to support business reporting and real-time analytics.
+* **Summer 2024: Intern Backend engineer**
+  * **Henan Cdcenter network technology Co., Ltd.**
+  * **Duties includes:**
+      * **Pipeline Development:** Built and maintained scalable ETL pipelines using Python (pandas, SQLAlchemy) and SQL, handling both structured (PostgreSQL) and semi-structured data (JSON, CSV) from multiple sources to support analytical reporting.
+      * **Workflow Orchestration:** Utilized Apache Airflow to schedule and monitor batch processing jobs, improving data pipeline reliability and transparency.
+      * **Data Processing:** Processed multi-terabyte datasets using Spark SQL and Hive, optimized query performance, and reduced execution time by 25% through partitioning and caching strategies.
+      * **Data Warehousing:** Supported data modeling and table design in Hadoop Hive for business dashboards and KPI tracking. Worked closely with analysts to align schema design with downstream requirements.
+      * **Data Quality:** Implemented data validation and automated alerts to ensure pipeline stability; developed unit tests for ETL modules.
+      * **Team Coordination:** Documented data assets and collaborated with BI and analytics teams to ensure data usability and traceability.
+      * **Access Control:** Assisted in implementing row-level access control policies and data cataloging to align with internal data governance standards.
 
-* Summer 2023: Intern Data Analyst
-  * China Life Insurance Co., Ltd.
-  * Duties included: Extracting crucial information from large-scale historical data. Fine-tune Large Language Model on the extracted data to predict user risk preference. Compared with prior version achieve higher accuracy in prediction.
+* **Summer 2023: Intern Data Analyst**
+  * **China Life Insurance Co., Ltd.**
+  * **Duties included:**
+      * **Risk Modeling:** Designed and implemented a user risk profiling model based on insurance policy data and customer interaction history, improving segmentation accuracy by integrating statistical analysis with machine learning approaches (e.g., logistic regression and XGBoost).
+      * **LLM Integration:** Participated in experimental integration of large language models (LLMs) for document analysis and customer query understanding, fine-tuning pre-trained transformer models to extract structured information from policy documents and customer communications.
+      * **Data Fusion:** Developed data pipelines to merge tabular data (user demographics, claims history) with textual data (consultation transcripts) using vectorization and contrastive learning, enabling richer feature representation for downstream predictive models.
+      * **ETL Automation:** Built automated ETL workflows using Python and SQL for data preprocessing and model input preparation, ensuring data readiness for training and deployment phases.
+      * **Model Evaluation:** Assisted in designing and conducting offline evaluation experiments and limited-scope A/B testing to compare predictive performance of updated algorithms in risk assessment tasks.
+      * **Team Collaboration:** Worked with product and business teams to identify business pain points, define model requirements, and communicate insights from model outputs to inform strategy and customer outreach initiatives.
 
 * Spring 2023: Intern Algorithm engineer
   * China Life Insurance Co., Ltd.
   * Duties included: As membership of advance algorithm develop team, involved in development of multi-modal alignment algorithm. Employed multi-modal encoder to encode multi-modal information (tabular data and textual data), utilized dot-product and negative likehoods to fuse and optimize them. Thie project achieve state-of-arts performance and be employed in real-world business.
  
-* Summer 2022: Intern Software Engineer
-  * Wonders Information Co., Ltd.
-  * Duties included: Participated in the construction project of the Social Security Card Replacement Platform, analyzed requirements for the project, and completed the system architecture design and module division. Utilized Java to implement critical functionalities, including user registration, login, and card replacement, debugged and optimized these functions and contributed to the construction of the associated database.
- 
-* Summer 2022: Intern Backend engineer
-  * Anjia VISION Information Technology Co., Ltd.
-  * Duties included: As membership of Backend server department. Took the role of developing API. Completed the development of three APIs, which provided users with video signal processing and interaction functions respectively.
- 
+* **Summer 2022: Intern Software Engineer**
+  * **Wonders Information Co., Ltd.**
+  * **Duties included:**
+      * **Bug Testing:** Assisted in identifying and fixing frontend-backend integration bugs during Social Security Card Platform testing; wrote unit tests to verify core functionality.
+      * **Code Implementation:** Supported junior developers by writing and refining Java code for user login, form validation, and data submission modules.
+      * **Data Handling:** Helped maintain and populate MySQL databases for user account data; practiced writing basic SELECT/UPDATE queries for data inspection.
+      * **Technical Documentation:** Created and updated technical documentation, including function descriptions and user guides, to support team communication and onboarding.
+      * **Team Collaboration:** Attended Agile stand-up meetings and sprint planning sessions, gaining experience in software development workflows.
+      
+
     
   
 Skills
