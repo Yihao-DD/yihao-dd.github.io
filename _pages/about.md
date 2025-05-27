@@ -8,4 +8,5 @@ redirect_from:
 ---
 
 👋 **Hello!**  
-My name is Yihao Wang, you can call me Chris. I guraduate from Hong Kong Baptist University (Zhuhai). Now, I am currently enrolling as an intern research assistant at INCLab, Shenzhen Graduate School, Peking University and work with professor Kai Lei. During my undergraduate period, I was a membership of Guangdong Provincial Key Laboratory of Interdisciplinary Research and Application for Data Science, and my supervisor was Ricky Yuen-tan Hou.
+My name is Yihao Wang, you can call me Ian. I guraduate from Hong Kong Baptist University. Currently, I am pursuing an M.S. in Applied Data Science at the University of Southern California. During my undergraduate studies, I was an RA of Beijing Normal-Hong Kong Baptist University supervised by Professor Hongjian Shi.  
+🎯 **Research Interests**
