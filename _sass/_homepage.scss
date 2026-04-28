@@ -1135,7 +1135,7 @@ html[data-theme="dark"] .hp-pub-title a:focus {
     border-top: 1px solid #ececec;
 
     li {
-      margin: 0 0 0.15em 0 !important;
+      margin: 0 0 0.35em 0 !important;
       padding: 0 !important;
       font-size: 0.88em;
       border-radius: 6px;
@@ -1184,9 +1184,10 @@ html[data-theme="dark"] .hp-pub-title a:focus {
         transform: scale(1.18);
       }
 
-      /* Info rows (location / employer): non-clickable, muted */
+      /* Info rows (location / USC): non-clickable, same row rhythm
+         and color as link rows so the whole list reads uniformly. */
       &.author__desktop {
-        color: #666 !important;
+        color: #444 !important;
         cursor: default;
 
         &:hover {
@@ -1199,21 +1200,11 @@ html[data-theme="dark"] .hp-pub-title a:focus {
       }
     }
 
-    /* Treat info rows (location, USC) the same as link rows so the
-       whole sidebar list reads with one consistent rhythm. */
-    li.author__desktop {
-      padding: 0.55em 0.7em 0.55em 0.85em !important;
-      margin: 0 0 0.35em 0 !important;
-    }
-    /* No divider between the last info row and the first link row */
+    /* No divider between info rows and link rows — single neat list */
     li.author__desktop + li:not(.author__desktop) {
       margin-top: 0 !important;
       padding-top: 0 !important;
       border-top: none !important;
-    }
-    /* Slightly more breathing room between every row for an even list */
-    li {
-      margin-bottom: 0.35em !important;
     }
   }
 }
