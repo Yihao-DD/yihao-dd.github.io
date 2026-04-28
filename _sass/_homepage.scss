@@ -1165,7 +1165,7 @@ html[data-theme="dark"] .hp-pub-title a:focus {
       a,
       &.author__desktop {
         display: block;
-        padding: 0.55em 0.7em 0.55em 0.85em;
+        padding: 0.55em 0.7em 0.55em 0.85em !important;
         color: #444 !important;
         text-decoration: none !important;
         line-height: 1.35;
