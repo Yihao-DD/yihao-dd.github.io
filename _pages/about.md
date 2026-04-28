@@ -21,7 +21,7 @@ redirect_from:
 
 <div class="hp-bio" markdown="1">
 
-I'm **Yihao Wang** (王奕豪) — you can also call me **Ian**. I'm currently pursuing an M.S. in Applied Data Science at the **University of Southern California**, where I previously worked as a **Graduate Research Assistant** at the **BioAcoustic Imaging Lab** — building Python pipelines for 3D reconstruction of mouse-brain vasculature from plane-wave ultrasound, handling slice registration, artifact correction, and visualization to recover vessel continuity across reconstructed volumes.
+I'm **Yihao Wang** (王奕豪) — you can also call me **Ian**. I'm currently pursuing an M.S. in Applied Data Science at the **University of Southern California**, where I'm working on **EMG-free gait muscle-force prediction** — using deep learning to estimate lower-limb muscle forces during walking from kinematics alone, without electromyography. Earlier at USC, I served as a **Graduate Research Assistant** at the **BioAcoustic Imaging Lab**, building Python pipelines for 3D reconstruction of mouse-brain vasculature from plane-wave ultrasound — handling slice registration, artifact correction, and visualization across reconstructed volumes.
 
 Before USC, I earned my B.Sc. in Computer Science from **Hong Kong Baptist University**, where I co-authored work on fine-grained image classification with Transformer-based methods.
 
@@ -49,6 +49,11 @@ My broader research interest is **deep learning for healthcare** — extracting 
 <div class="hp-section-title"><span class="hp-ico">📰</span> News</div>
 
 <ul class="hp-news">
+  <li>
+    <span class="hp-date">Feb 2026</span>
+    <span class="hp-badge">Current</span>
+    Started a new project at USC on <strong>EMG-free gait muscle-force prediction</strong>.
+  </li>
   <li>
     <span class="hp-date">Mar 2025</span>
     <span class="hp-badge">RA</span>

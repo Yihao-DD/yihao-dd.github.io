@@ -30,13 +30,32 @@ $stars-large:  star-field(40,  2000, 1400, #c9d7ff);
   to   { transform: translate3d(0, -40px, 0); }
 }
 
-/* --- Day-mode canvas: clean paper-like with warm radial hints --- */
+/* --- Day-mode canvas: paper-like with USC Cardinal & Gold ambient halos --- */
 body {
   background:
-    radial-gradient(ellipse 900px 600px at 8% -5%,  rgba(153, 0, 0, 0.045), transparent 60%),
-    radial-gradient(ellipse 1100px 700px at 100% 100%, rgba(255, 204, 0, 0.055), transparent 60%),
-    linear-gradient(180deg, #fbfaf8 0%, #f6f3ee 100%) !important;
+    radial-gradient(ellipse  800px 500px at  5%  -5%, rgba(153,   0,   0, 0.075), transparent 60%),
+    radial-gradient(ellipse  700px 500px at 95%   5%, rgba(255, 204,   0, 0.090), transparent 60%),
+    radial-gradient(ellipse  600px 400px at 100% 55%, rgba(153,   0,   0, 0.045), transparent 60%),
+    radial-gradient(ellipse  500px 350px at   0% 50%, rgba(255, 204,   0, 0.040), transparent 60%),
+    radial-gradient(ellipse  800px 500px at   0% 100%, rgba(255, 204,   0, 0.065), transparent 60%),
+    radial-gradient(ellipse  900px 600px at 100% 100%, rgba(153,   0,   0, 0.060), transparent 60%),
+    linear-gradient(180deg, #fdfbf6 0%, #f7f3eb 100%) !important;
   background-attachment: fixed !important;
+}
+
+/* USC top stripe — Cardinal→Gold ribbon across the very top.
+   Uses html::before in light mode; dark mode redefines html::before
+   for the star nebula layer and naturally overrides this. */
+html::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #990000 0%, #ffcc00 100%);
+  z-index: 1000;
+  pointer-events: none;
 }
 
 /* --- Night-mode canvas: deep gradient + three layers of twinkling stars + nebula --- */
