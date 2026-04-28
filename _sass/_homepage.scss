@@ -440,6 +440,11 @@ html[data-theme="dark"] {
       color: #aeb1b9 !important;
     }
     .author__bio { color: #c8cad0 !important; }
+    .author__seeking {
+      color: #ff8c8c !important;
+      background: rgba(255, 140, 140, 0.12) !important;
+      border-color: rgba(255, 140, 140, 0.32) !important;
+    }
 
     .author__urls {
       border-top-color: #262b37 !important;
@@ -1098,8 +1103,24 @@ html[data-theme="dark"] .hp-pub-title a:focus {
     color: #555;
     line-height: 1.55;
     padding: 0 0.4em;
-    margin: 0 auto 0.9em auto;
+    margin: 0 auto 0.5em auto;
     font-style: italic;
+  }
+
+  /* Cardinal pill: I'm-looking-for-a-PhD signal under the bio */
+  .author__seeking {
+    display: inline-block;
+    font-size: 0.78em;
+    font-weight: 700;
+    color: #990000;
+    background: rgba(153, 0, 0, 0.08);
+    border: 1px solid rgba(153, 0, 0, 0.28);
+    padding: 0.32em 0.85em;
+    border-radius: 999px;
+    margin: 0 auto 0.9em auto;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+    line-height: 1.4;
   }
 
   /* Hide the unused Follow button */
