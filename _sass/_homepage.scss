@@ -74,25 +74,24 @@ html::before {
   pointer-events: none;
 }
 
-/* Force sidebar wide enough that "University of Southern California"
-   doesn't clip — bypasses the Susy width vars in case the partial
-   change in _variables.scss didn't propagate through SASS caching. */
+/* Sidebar widths — moderate so the main content column has room
+   to breathe. Bypasses Susy vars to avoid SASS partial cache issues. */
 @media (min-width: 925px) {
   .sidebar {
-    width: calc(320px - 1em) !important;
+    width: calc(260px - 1em) !important;
   }
   .page {
-    width: calc(100% - 320px) !important;
-    padding-right: 320px !important;
+    width: calc(100% - 260px) !important;
+    padding-right: 260px !important;
   }
 }
 @media (min-width: 1280px) {
   .sidebar {
-    width: calc(380px - 1em) !important;
+    width: calc(300px - 1em) !important;
   }
   .page {
-    width: calc(100% - 380px) !important;
-    padding-right: 380px !important;
+    width: calc(100% - 300px) !important;
+    padding-right: 300px !important;
   }
 }
 
