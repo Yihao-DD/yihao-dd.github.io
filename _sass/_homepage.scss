@@ -39,11 +39,11 @@ $stars-large:  star-field(40,  2000, 1400, #c9d7ff);
 body {
   background:
     repeating-linear-gradient(45deg,
-      transparent 0, transparent 50px,
-      rgba(153,   0,   0, 0.050) 50px, rgba(153,   0,   0, 0.050) 52px,
-      transparent 52px, transparent 56px,
-      rgba(255, 204,   0, 0.060) 56px, rgba(255, 204,   0, 0.060) 58px,
-      transparent 58px, transparent 90px),
+      transparent 0, transparent 70px,
+      rgba(153,   0,   0, 0.022) 70px, rgba(153,   0,   0, 0.022) 71px,
+      transparent 71px, transparent 75px,
+      rgba(255, 204,   0, 0.028) 75px, rgba(255, 204,   0, 0.028) 76px,
+      transparent 76px, transparent 140px),
     radial-gradient(ellipse  800px 500px at  5%  -5%, rgba(153,   0,   0, 0.085), transparent 60%),
     radial-gradient(ellipse  700px 500px at 95%   5%, rgba(255, 204,   0, 0.100), transparent 60%),
     radial-gradient(ellipse  600px 400px at 100% 55%, rgba(153,   0,   0, 0.050), transparent 60%),
@@ -72,6 +72,28 @@ html::before {
   background: linear-gradient(90deg, #990000 0%, #ffcc00 100%);
   z-index: 1000;
   pointer-events: none;
+}
+
+/* Force sidebar wide enough that "University of Southern California"
+   doesn't clip — bypasses the Susy width vars in case the partial
+   change in _variables.scss didn't propagate through SASS caching. */
+@media (min-width: 925px) {
+  .sidebar {
+    width: calc(320px - 1em) !important;
+  }
+  .page {
+    width: calc(100% - 320px) !important;
+    padding-right: 320px !important;
+  }
+}
+@media (min-width: 1280px) {
+  .sidebar {
+    width: calc(380px - 1em) !important;
+  }
+  .page {
+    width: calc(100% - 380px) !important;
+    padding-right: 380px !important;
+  }
 }
 
 /* --- Night-mode canvas: deep gradient + three layers of twinkling stars + nebula --- */
