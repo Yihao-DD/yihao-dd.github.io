@@ -8,43 +8,42 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Yihao Wang's Personal Homepage"
-title_separator          : "-"
+title                    : "Yihao Wang"
+title_separator          : "·"
 name                     : &name "Yihao Wang"
-description              : &description "Personal description"
-url                      : https://yihao-DD.github.io # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io"
-baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "academicpages/academicpages.github.io"
+description              : &description "Yihao Wang — M.S. student in Applied Data Science at the University of Southern California. Deep learning for healthcare and large language models."
+url                      : https://yihao-dd.github.io
+baseurl                  : ""
+repository               : "Yihao-DD/yihao-dd.github.io"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "8bb25b9cde51e379499601764f2890e.jpg"
+  avatar           : "profile.png"
   name             : "Yihao Wang"
-  pronouns         : "he/him"  
-  bio              : "I am seeking for a RA position. If you have interest on me, plz contact me!"
-  location         : "Los Angels"
+  pronouns         : "he/him"
+  bio              : "M.S. student at USC. Deep learning for healthcare → LLMs."
+  location         : "Los Angeles, CA"
   employer         : "University of Southern California"
-  #uri              : https://yihao-dd.github.io
-  email            : "yh82620027@gmail.com" 
+  email            : "ywang642@usc.edu"
 
   # Academic websites
-  arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : #"https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
-  impactstory      : # URL
-  orcid            : #"http://orcid.org/yourorcidurl"
-  semantic         : # URL
-  pubmed           : #"https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
-  researchgate     : # URL
-  scopus           : # URL
+  arxiv            :
+  googlescholar    : "https://scholar.google.com/citations?hl=en&user=EJ_FWSIAAAAJ"
+  impactstory      :
+  orcid            :
+  semantic         :
+  pubmed           :
+  researchgate     :
+  scopus           :
 
   # Repositories and software development
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "academicpages"
+  github           : "Yihao-DD"
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
@@ -58,7 +57,7 @@ author:
   keybase          : # Username
   instagram        : # Username
   lastfm           : # Username
-  linkedin         : # Username
+  linkedin         : "yihao-wang-a43a2b35b"
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username

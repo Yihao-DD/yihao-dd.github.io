@@ -1,0 +1,1132 @@
+/* ==========================================================================
+   HOMEPAGE & SIDEBAR CUSTOMIZATIONS
+   Scoped under .hp-* classes used in _pages/about.md and author-profile.html
+   ========================================================================== */
+
+
+/* ==========================================================================
+   ATMOSPHERIC BACKGROUND (day + starry night)
+   ========================================================================== */
+
+/* Star-field generator — outputs box-shadow list with random positions */
+@function star-field($count, $range-x: 2000, $range-y: 1400, $color: #ffffff) {
+  $shadow: "#{random($range-x)}px #{random($range-y)}px #{$color}";
+  @for $i from 2 through $count {
+    $shadow: "#{$shadow}, #{random($range-x)}px #{random($range-y)}px #{$color}";
+  }
+  @return unquote($shadow);
+}
+
+$stars-small:  star-field(500, 2000, 1400, #ffffff);
+$stars-medium: star-field(150, 2000, 1400, #e8ecff);
+$stars-large:  star-field(40,  2000, 1400, #c9d7ff);
+
+@keyframes hp-twinkle {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+@keyframes hp-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(0, -40px, 0); }
+}
+
+/* --- Day-mode canvas: clean paper-like with warm radial hints --- */
+body {
+  background:
+    radial-gradient(ellipse 900px 600px at 8% -5%,  rgba(153, 0, 0, 0.045), transparent 60%),
+    radial-gradient(ellipse 1100px 700px at 100% 100%, rgba(255, 204, 0, 0.055), transparent 60%),
+    linear-gradient(180deg, #fbfaf8 0%, #f6f3ee 100%) !important;
+  background-attachment: fixed !important;
+}
+
+/* --- Night-mode canvas: deep gradient + three layers of twinkling stars + nebula --- */
+html[data-theme="dark"] {
+  body {
+    background:
+      radial-gradient(ellipse at 50% 0%, #1c1f33 0%, #0a0c18 55%, #03040a 100%) !important;
+    background-attachment: fixed !important;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Small & medium stars via body pseudo-elements */
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::before {
+    box-shadow: #{$stars-small};
+    animation: hp-twinkle 4.5s ease-in-out infinite,
+               hp-drift 120s linear infinite alternate;
+  }
+  body::after {
+    box-shadow: #{$stars-medium};
+    animation: hp-twinkle 6.5s ease-in-out 1s infinite,
+               hp-drift 180s linear infinite alternate;
+  }
+
+  /* Large bright stars + nebula glow on html pseudo-elements */
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    box-shadow: #{$stars-large};
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    animation: hp-twinkle 3s ease-in-out infinite;
+  }
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 700px 400px at 18% 25%, rgba(138, 110, 210, 0.10), transparent 60%),
+      radial-gradient(ellipse 900px 500px at 82% 75%, rgba(90, 140, 210, 0.09), transparent 60%),
+      radial-gradient(ellipse 500px 300px at 60% 10%, rgba(245, 170, 100, 0.05), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Let the starry canvas show through main & sidebar
+     (DO NOT include `body` here — that's where the starry gradient lives). */
+  #main,
+  .sidebar { background: transparent !important; }
+
+  /* Sit content above the star layers.
+     Do NOT touch .masthead's positioning — theme sets it `position: fixed;
+     top: 0` and overriding that unsticks it from the viewport top. */
+  #main,
+  .page__footer { position: relative; z-index: 1; }
+
+  /* Re-assert masthead bg on top of stars (slight translucency for glass feel) */
+  .masthead {
+    background: rgba(20, 24, 34, 0.85) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  }
+  .greedy-nav {
+    background: transparent !important;
+  }
+  .greedy-nav .visible-links li:first-child a,
+  .greedy-nav a { background: transparent !important; }
+
+  /* Footer subtle panel */
+  .page__footer {
+    background: rgba(5, 7, 16, 0.7) !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+  }
+}
+
+
+/* ==========================================================================
+   LANGUAGE SWITCHER (nav bar)
+   ========================================================================== */
+.lang-switch {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  background: #f3f3f3;
+  border-radius: 999px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  z-index: 10;
+
+  &__option {
+    position: relative;
+    z-index: 1;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 28px;
+    margin: 0 !important;
+    padding: 0 10px !important;
+    border-radius: 999px;
+    font-size: 0.82em;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-decoration: none !important;
+    color: #888 !important;
+    transition: color 0.25s ease, transform 0.2s ease, background 0.25s ease;
+
+    &:hover {
+      color: #990000 !important;
+      transform: scale(1.05);
+    }
+    /* Kill the default greedy-nav underline bar inherited via a:before */
+    &:before { display: none !important; }
+
+    &[lang="zh"] {
+      font-size: 0.95em;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+    &.is-active {
+      color: #fff !important;
+      background: linear-gradient(135deg, #990000 0%, #ffcc00 100%);
+      box-shadow: 0 2px 6px rgba(153, 0, 0, 0.28);
+    }
+    &.is-active:hover {
+      color: #fff !important;
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* Raise specificity over greedy-nav defaults */
+.greedy-nav a.lang-switch__option { margin: 0 !important; padding: 0 10px !important; }
+
+/* Prevent overlap with the last nav link */
+.masthead .greedy-nav .visible-links {
+  padding-right: 11.5rem;
+}
+
+
+/* ==========================================================================
+   THEME TOGGLE (dark mode button)
+   Need high specificity to beat .greedy-nav button defaults from theme.
+   ========================================================================== */
+.greedy-nav button.theme-toggle,
+button.theme-toggle,
+button.theme-toggle.hidden {
+  position: absolute !important;
+  right: 6.4rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 34px !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  visibility: visible !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 50% !important;
+  background: #f3f3f3 !important;
+  color: #555 !important;
+  cursor: pointer;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  z-index: 20 !important;
+  overflow: visible;
+
+  &:hover {
+    transform: translateY(-50%) scale(1.08) !important;
+    box-shadow: 0 2px 8px rgba(153, 0, 0, 0.22);
+    color: #990000 !important;
+    background: #f3f3f3 !important;
+  }
+  &:focus { outline: none; }
+  &:focus-visible {
+    outline: 2px solid #ffcc00;
+    outline-offset: 2px;
+  }
+}
+.theme-toggle__icon {
+  position: absolute;
+  display: inline-flex;
+  transition: opacity 0.3s ease, transform 0.4s cubic-bezier(.4, 0, .2, 1);
+}
+.theme-toggle__sun  { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+.theme-toggle__moon { opacity: 1; transform: rotate(0deg)   scale(1); }
+
+
+/* ==========================================================================
+   DARK MODE
+   ========================================================================== */
+html[data-theme="dark"] {
+  /* base text color only — body background is owned by the atmospheric
+     starry-sky section above; do NOT re-set it here. */
+  color: #d7d9df !important;
+
+  body { color: #d7d9df !important; }
+
+  /* Swap toggle icons */
+  .greedy-nav button.theme-toggle,
+  button.theme-toggle {
+    background: #242832 !important;
+    color: #ffd700 !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+
+    &:hover {
+      color: #ffe066 !important;
+      background: #242832 !important;
+      box-shadow: 0 2px 10px rgba(245, 201, 112, 0.28);
+    }
+  }
+  .theme-toggle__sun  { opacity: 1; transform: rotate(0deg) scale(1); }
+  .theme-toggle__moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
+
+  /* --- masthead / nav --- */
+  .masthead,
+  .greedy-nav,
+  .greedy-nav .visible-links li:first-child a,
+  .greedy-nav a {
+    background: #141822 !important;
+    color: #e3e5ea !important;
+  }
+  .masthead { border-bottom: 1px solid #242832 !important; }
+
+  .greedy-nav a:hover { color: #ffcc00 !important; }
+  .greedy-nav .visible-links a:before {
+    background: #ffcc00 !important;
+  }
+  .greedy-nav button { background: #990000 !important; }
+
+  .lang-switch {
+    background: #242832 !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.45) !important;
+  }
+  .lang-switch__option { color: #aeb1b9 !important; }
+  .lang-switch__option:hover { color: #ffcc44 !important; }
+
+  /* --- main content --- */
+  #main { background: #0f1115 !important; }
+  .page__title,
+  .page__content,
+  h1, h2, h3, h4, h5, h6 { color: #eceff5 !important; }
+
+  a { color: #ffd700 !important; }
+  a:hover { color: #ffc491 !important; }
+
+  /* --- section headings --- */
+  .hp-section-title {
+    color: #eceff5 !important;
+    border-bottom-color: #2a2f3a !important;
+  }
+
+  /* --- hero --- */
+  .hp-hero .hp-sub { color: #aeb1b9 !important; }
+
+  /* --- bio & body text --- */
+  .hp-bio p { color: #d7d9df !important; }
+
+  /* --- research interest cards --- */
+  .hp-card {
+    background: #1a1e28 !important;
+    border-color: #262b37 !important;
+    border-left-color: #ffcc00 !important;
+  }
+  .hp-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45) !important;
+  }
+  .hp-card-title { color: #eceff5 !important; }
+  .hp-card-desc  { color: #aeb1b9 !important; }
+
+  /* --- news --- */
+  .hp-news li {
+    background: #1a1e28 !important;
+    border-left-color: #ffcc00 !important;
+    color: #d7d9df !important;
+  }
+  .hp-news .hp-date  { color: #ffd700 !important; }
+  .hp-news .hp-badge { background: #ffcc00 !important; }
+
+  /* --- publications --- */
+  .hp-pub-group-title {
+    color: #aeb1b9 !important;
+    border-left-color: #ffcc00 !important;
+  }
+  .hp-pub {
+    background: #1a1e28 !important;
+    border-color: #262b37 !important;
+  }
+  .hp-pub::before { background: #ffcc00 !important; }
+  .hp-pub:hover {
+    border-color: #ffd700 !important;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.5) !important;
+  }
+  .hp-pub-authors { color: #c8cad0 !important; }
+  .hp-pub-authors strong { color: #ffd700 !important; }
+  .hp-pub-title { color: #eceff5 !important; }
+  .hp-pub-venue { color: #9aa0ab !important; }
+  .hp-pub-badge-review { background: #3a3f4c !important; color: #c8cad0 !important; }
+  .hp-pub-badge-ccfb   { background: #cc3344 !important; }
+  .hp-pub-badge-ccfc   { background: #ffd700 !important; }
+  .hp-pub-badge-ei     { background: #6a8bb0 !important; }
+
+  /* --- education --- */
+  .hp-edu li { border-bottom-color: #262b37 !important; }
+  .hp-edu .hp-edu-school { color: #eceff5 !important; }
+  .hp-edu .hp-edu-meta   { color: #9aa0ab !important; }
+
+  /* --- CTA --- */
+  .hp-cta {
+    background: linear-gradient(135deg, #241814 0%, #1f1a16 100%) !important;
+    color: #e3e5ea !important;
+  }
+
+  /* --- sidebar author profile --- */
+  .sidebar { background: transparent !important; }
+  .hp-author {
+    .author__pronouns {
+      background: #242832 !important;
+      color: #aeb1b9 !important;
+    }
+    .author__bio { color: #c8cad0 !important; }
+
+    .author__urls {
+      border-top-color: #262b37 !important;
+
+      li {
+        color: #c8cad0 !important;
+
+        a, &.author__desktop { color: #c8cad0 !important; }
+        a:hover { color: #ffd700 !important; }
+        i { color: #7a7f8a !important; }
+        &:hover { background: linear-gradient(90deg, rgba(255, 204, 0, 0.14) 0%, rgba(255, 204, 0, 0.03) 100%) !important; }
+        &:hover i { color: #ffd700 !important; }
+
+        &.author__desktop { color: #aeb1b9 !important; }
+        &.author__desktop:hover i { color: #7a7f8a !important; }
+      }
+      li.author__desktop + li:not(.author__desktop) {
+        border-top-color: #262b37 !important;
+      }
+    }
+  }
+
+  /* --- notice about bold/asterisk --- */
+  .page__content > p > code {
+    background: #242832 !important;
+    color: #e3e5ea !important;
+  }
+
+  /* --- footer --- */
+  .page__footer {
+    background: #0b0d12 !important;
+    color: #9aa0ab !important;
+
+    a { color: #ffd700 !important; }
+  }
+}
+
+
+/* ==========================================================================
+   RESPONSIVE / MOBILE POLISH
+   ========================================================================== */
+
+/* Tablet & phone (≤ 768px) */
+@media (max-width: 768px) {
+  /* --- Hero --- */
+  .hp-hero h1 { font-size: 1.55em !important; line-height: 1.25; }
+  .hp-hero .hp-sub { font-size: 0.92em; }
+
+  /* --- Section titles --- */
+  .hp-section-title {
+    font-size: 1.08em;
+    margin: 1.3em 0 0.55em 0;
+  }
+
+  /* --- Bio --- */
+  .hp-bio p { font-size: 0.96em; line-height: 1.65; }
+
+  /* --- Research interest cards: stack single-column with tighter padding --- */
+  .hp-interests {
+    grid-template-columns: 1fr;
+    gap: 0.55em;
+  }
+  .hp-card { padding: 0.7em 0.85em; }
+  .hp-card-title { font-size: 0.96em; }
+  .hp-card-desc  { font-size: 0.84em; }
+
+  /* --- News --- */
+  .hp-news li {
+    padding: 0.65em 0.75em 0.65em 0.85em;
+    font-size: 0.9em;
+  }
+  .hp-news .hp-date { display: block; margin-bottom: 0.2em; }
+
+  /* --- Publications: shrink the number badge column --- */
+  .hp-pub {
+    padding: 0.65em 0.8em 0.7em 2.15em;
+    font-size: 0.9em;
+  }
+  .hp-pub::before {
+    left: 0.55em;
+    top: 0.8em;
+    width: 1.3em;
+    height: 1.3em;
+    line-height: 1.3em;
+    font-size: 0.7em;
+  }
+  .hp-pub-authors { font-size: 0.82em; }
+  .hp-pub-title   { font-size: 0.95em; line-height: 1.35; }
+  .hp-pub-venue   { font-size: 0.8em; line-height: 1.5; }
+  .hp-pub-badge {
+    font-size: 0.62em;
+    padding: 0.12em 0.5em;
+    margin-bottom: 0.15em;
+  }
+
+  /* Let venue badges breathe when they wrap */
+  .hp-pub-venue span.hp-pub-badge + span.hp-pub-badge { margin-left: 0; }
+
+  /* --- Education --- */
+  .hp-edu li { font-size: 0.92em; }
+
+  /* --- CTA --- */
+  .hp-cta {
+    padding: 0.85em 0.95em;
+    font-size: 0.92em;
+  }
+
+  /* --- Sidebar: FULL rewrite for mobile --- */
+  /* The theme lays sidebar children out as table-cells (avatar | content | urls)
+     and renders .author__urls as an absolute-positioned popup anchored to a
+     "Follow" button. Force a vertical, centered block layout instead. */
+  .sidebar,
+  .hp-author {
+    display: block !important;
+    margin: 0.5em auto 1.2em auto !important;
+    padding: 0 !important;
+    text-align: center;
+
+    /* Force block layout on every row that the theme made table-cell */
+    .author__avatar,
+    .author__content,
+    .author__urls-wrapper {
+      display: block !important;
+      width: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      text-align: center !important;
+    }
+
+    .author__avatar { margin-bottom: 0.6em !important; }
+    .author__avatar img {
+      display: block !important;
+      max-width: 130px !important;
+      width: 130px !important;
+      margin: 0 auto !important;
+      padding: 3px !important;
+      border: none !important;
+    }
+    .author__avatar::before { width: 138px !important; height: 138px !important; }
+
+    .author__name {
+      display: inline-block !important;
+      font-size: 1.2em !important;
+      margin: 0.25em auto 0.2em auto !important;
+      white-space: nowrap;
+    }
+    .author__pronouns {
+      display: inline-block !important;
+      margin: 0 auto 0.55em auto !important;
+    }
+    .author__bio {
+      display: block !important;
+      font-size: 0.88em !important;
+      padding: 0 1em !important;
+      margin: 0 auto 0.85em auto !important;
+    }
+
+    /* Kill the Follow button AND its popup arrows decisively */
+    .author__urls-wrapper button.btn { display: none !important; }
+    .author__urls-wrapper button.btn--inverse { display: none !important; }
+    .author__urls::before,
+    .author__urls::after { display: none !important; }
+
+    /* URLs: flat centered wrapping row, NOT a popup */
+    .author__urls,
+    .author__urls-wrapper .author__urls {
+      display: flex !important;
+      visibility: visible !important;
+      position: static !important;
+      right: auto !important;
+      top: auto !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 0.15em 0.25em !important;
+      max-width: 540px;
+      margin: 0.4em auto 0 auto !important;
+      padding: 0.6em 0 0 0 !important;
+      border: none !important;
+      border-top: 1px solid #ececec !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      z-index: auto !important;
+
+      li {
+        flex: 0 1 auto !important;
+        white-space: nowrap;
+        margin: 0 !important;
+        font-size: 0.82em;
+
+        a,
+        &.author__desktop {
+          display: inline-flex !important;
+          align-items: center;
+          padding: 0.35em 0.55em !important;
+        }
+
+        /* Kill hover slide + gradient bar in horizontal layout */
+        &:hover { transform: none !important; background: transparent !important; }
+        &::before { display: none !important; }
+      }
+      /* No dashed divider in horizontal row */
+      li.author__desktop + li:not(.author__desktop) {
+        border-top: none !important;
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+      }
+    }
+
+    /* Show Norman OK / OU employer rows on mobile (theme hides them < 1024px) */
+    .author__desktop { display: inline-flex !important; }
+  }
+}
+
+/* Dark-mode popup bg override (in case any residual popup styling leaks) */
+html[data-theme="dark"] .sidebar .author__urls {
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+
+/* Narrow phone (≤ 600px) — masthead-specific tweaks */
+@media (max-width: 600px) {
+  /* Site title: shrink + allow ellipsis so it doesn't collide with switchers */
+  .masthead__menu-item--lg {
+    max-width: calc(100vw - 11rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    a { font-size: 0.88em; }
+  }
+  .masthead__inner-wrap { padding: 0.7em 0.9em 0.7em !important; }
+
+  /* Language switcher — compact pill */
+  .lang-switch {
+    right: 0.6rem;
+    padding: 2px;
+
+    &__option {
+      min-width: 28px;
+      height: 24px;
+      padding: 0 7px !important;
+      font-size: 0.72em;
+    }
+  }
+
+  /* Theme toggle — smaller, with breathing room from lang switcher */
+  .greedy-nav button.theme-toggle,
+  button.theme-toggle,
+  button.theme-toggle.hidden {
+    right: 6rem !important;
+    width: 28px !important;
+    height: 28px !important;
+
+    svg { width: 13px; height: 13px; }
+  }
+  .masthead .greedy-nav .visible-links { padding-right: 9.5rem; }
+
+  /* Hero */
+  .hp-hero h1 { font-size: 1.35em !important; }
+
+  /* News: single-line date less dominant */
+  .hp-news li { font-size: 0.88em; padding-left: 0.75em; }
+
+  /* Publications: even tighter */
+  .hp-pub {
+    padding: 0.6em 0.7em 0.65em 1.95em;
+    font-size: 0.88em;
+  }
+  .hp-pub::before {
+    left: 0.45em;
+    width: 1.2em;
+    height: 1.2em;
+    line-height: 1.2em;
+    font-size: 0.65em;
+  }
+
+  /* CTA */
+  .hp-cta { font-size: 0.88em; padding: 0.8em; }
+}
+
+
+/* Extra-small phone (≤ 420px) */
+@media (max-width: 420px) {
+  .hp-hero h1 { font-size: 1.22em !important; }
+  .hp-hero .hp-sub { font-size: 0.85em; }
+
+  /* Hide long site title on ultra-narrow — the page itself is obvious */
+  .masthead__menu-item--lg a {
+    font-size: 0 !important;
+  }
+  .masthead__menu-item--lg a::after {
+    content: "YW";
+    font-size: 1rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #990000 0%, #ffcc00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+  }
+
+  /* Dark-mode variant for the LX monogram */
+  html[data-theme="dark"] .masthead__menu-item--lg a::after {
+    background: linear-gradient(135deg, #ffd700 0%, #ffe066 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+
+/* ---------- Shared palette ---------- */
+.hp-author,
+.hp-hero,
+.hp-bio,
+.hp-interests,
+.hp-news,
+.hp-edu,
+.hp-cta,
+.hp-pub-group,
+.hp-section-title {
+  --ou-red: #990000;
+  --ou-orange: #ffcc00;
+}
+
+/* ---------- Homepage body ---------- */
+.hp-hero {
+  margin-top: 0.25em;
+  margin-bottom: 1.6em;
+
+  h1 {
+    font-size: 2em;
+    margin: 0 0 0.15em 0;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .hp-sub {
+    font-size: 1.05em;
+    color: #666;
+    margin: 0;
+  }
+  .hp-accent {
+    display: inline-block;
+    width: 44px;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #990000 0%, #ffcc00 100%);
+    margin: 0.7em 0 1em 0;
+  }
+}
+
+.hp-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45em;
+  font-size: 1.25em;
+  font-weight: 700;
+  margin: 1.8em 0 0.75em 0;
+  padding-bottom: 0.35em;
+  border-bottom: 1px solid #e6e6e6;
+  color: #222;
+
+  .hp-ico { font-size: 1.1em; }
+}
+
+.hp-bio p { line-height: 1.7; margin: 0 0 0.9em 0; }
+
+/* ---------- Research Interests cards ---------- */
+.hp-interests {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8em;
+  margin: 0.6em 0 0 0;
+}
+.hp-card {
+  background: #fafafa;
+  border: 1px solid #ececec;
+  border-left: 3px solid #990000;
+  border-radius: 6px;
+  padding: 0.8em 0.95em;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  }
+}
+.hp-card-title {
+  font-weight: 600;
+  font-size: 0.98em;
+  margin-bottom: 0.25em;
+  color: #222;
+}
+.hp-card-desc {
+  font-size: 0.88em;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* ---------- News timeline ---------- */
+.hp-news {
+  margin: 0.5em 0 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    padding: 0.75em 0.95em 0.75em 1em;
+    margin-bottom: 0.6em;
+    background: #fafafa;
+    border-left: 3px solid #ffcc00;
+    border-radius: 0 6px 6px 0;
+    line-height: 1.55;
+    font-size: 0.95em;
+  }
+  .hp-date {
+    display: inline-block;
+    font-weight: 700;
+    color: #990000;
+    margin-right: 0.4em;
+    font-size: 0.88em;
+    letter-spacing: 0.2px;
+  }
+  .hp-badge {
+    display: inline-block;
+    background: #990000;
+    color: #fff;
+    font-size: 0.72em;
+    font-weight: 700;
+    padding: 0.12em 0.55em;
+    border-radius: 10px;
+    margin-right: 0.35em;
+    vertical-align: 2px;
+    letter-spacing: 0.4px;
+  }
+}
+
+/* ---------- Education ---------- */
+.hp-edu {
+  padding-left: 0;
+
+  li {
+    padding: 0.45em 0;
+    border-bottom: 1px dashed #ececec;
+    list-style: none;
+
+    &:last-child { border-bottom: none; }
+  }
+  .hp-edu-school { font-weight: 600; color: #222; }
+  .hp-edu-meta { color: #777; font-size: 0.88em; }
+}
+
+/* ---------- CTA card ---------- */
+.hp-cta {
+  margin-top: 1.5em;
+  padding: 1em 1.2em;
+  background: linear-gradient(135deg, #fff7ee 0%, #fdeee6 100%);
+  border-radius: 8px;
+  font-size: 0.98em;
+  color: #333;
+
+  a { font-weight: 600; }
+}
+
+/* ---------- Publications ---------- */
+.hp-pub-group { margin-bottom: 1.4em; }
+.hp-pub-group-title {
+  font-size: 0.8em;
+  font-weight: 700;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  margin: 1.1em 0 0.6em 0;
+  padding-left: 0.6em;
+  border-left: 3px solid #ffcc00;
+}
+.hp-pub-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: pubcounter;
+}
+.hp-pub {
+  position: relative;
+  counter-increment: pubcounter;
+  padding: 0.75em 0.95em 0.8em 2.6em;
+  margin-bottom: 0.55em;
+  background: #fafafa;
+  border: 1px solid #ececec;
+  border-radius: 6px;
+  line-height: 1.55;
+  font-size: 0.93em;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+
+  &::before {
+    content: counter(pubcounter);
+    position: absolute;
+    left: 0.7em;
+    top: 0.85em;
+    width: 1.5em;
+    height: 1.5em;
+    text-align: center;
+    line-height: 1.5em;
+    font-size: 0.75em;
+    font-weight: 700;
+    color: #fff;
+    background: #990000;
+    border-radius: 50%;
+  }
+  &:hover {
+    border-color: #ffcc00;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    transform: translateY(-1px);
+  }
+}
+.hp-pub-authors {
+  color: #555;
+  font-size: 0.88em;
+  margin-bottom: 0.25em;
+
+  strong { color: #990000; }
+}
+.hp-pub-title {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.35em;
+  line-height: 1.45;
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease;
+    background-image: linear-gradient(90deg, #990000, #ffcc00);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1.5px;
+    transition: background-size 0.3s ease, color 0.2s ease;
+
+    &:hover, &:focus {
+      color: #990000 !important;
+      background-size: 100% 1.5px;
+      outline: none;
+    }
+  }
+}
+html[data-theme="dark"] .hp-pub-title a:hover,
+html[data-theme="dark"] .hp-pub-title a:focus {
+  color: #ffd700 !important;
+  background-image: linear-gradient(90deg, #ffd700, #ffe066);
+}
+.hp-pub-venue {
+  font-size: 0.85em;
+  color: #666;
+  font-style: italic;
+}
+.hp-pub-badge {
+  display: inline-block;
+  font-size: 0.7em;
+  font-weight: 700;
+  padding: 0.14em 0.6em;
+  border-radius: 10px;
+  margin-right: 0.3em;
+  vertical-align: 1px;
+  letter-spacing: 0.5px;
+  font-style: normal;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.hp-pub-badge-review   { background: #e3e3e3; color: #555; }
+.hp-pub-badge-ccfb     { background: #990000; color: #fff; }
+.hp-pub-badge-ccfc     { background: #ffcc00; color: #fff; }
+.hp-pub-badge-ei       { background: #4a6b8a; color: #fff; }
+.hp-pub-badge-patent   { background: #b8860b; color: #fff; }
+.hp-pub-badge-arxiv    { background: #6a4c93; color: #fff; }
+.hp-pub-badge-accepted { background: #2e8b57; color: #fff; }
+
+
+/* ==========================================================================
+   SIDEBAR AUTHOR PROFILE REDESIGN
+   ========================================================================== */
+
+.hp-author {
+  .author__avatar {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 0.4em;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 188px;
+      height: 188px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #990000, #ffcc00, #990000);
+      filter: blur(14px);
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      z-index: 0;
+      pointer-events: none;
+    }
+    &:hover::before { opacity: 0.55; }
+
+    img {
+      position: relative;
+      z-index: 1;
+      max-width: 180px;
+      width: 100%;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, #990000 0%, #ffcc00 100%);
+      box-shadow: 0 4px 16px rgba(153, 0, 0, 0.18);
+      transition: transform 0.35s cubic-bezier(.2,.9,.3,1.2), box-shadow 0.35s ease;
+
+      &:hover {
+        transform: scale(1.04) rotate(-1.5deg);
+        box-shadow: 0 10px 28px rgba(153, 0, 0, 0.32);
+      }
+    }
+  }
+
+  .author__content { text-align: center; padding: 0 0.3em; }
+
+  .author__name {
+    display: inline-block;
+    font-size: 1.4em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 0.6em 0 0.25em 0;
+    background: linear-gradient(135deg, #990000 0%, #ffcc00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .author__pronouns {
+    display: inline-block;
+    font-size: 0.7em;
+    padding: 0.2em 0.75em;
+    background: #f2f2f2;
+    color: #777;
+    border-radius: 12px;
+    margin: 0 auto 0.7em auto;
+    text-transform: lowercase;
+    letter-spacing: 0.6px;
+    font-weight: 600;
+  }
+
+  .author__bio {
+    font-size: 0.85em;
+    color: #555;
+    line-height: 1.55;
+    padding: 0 0.4em;
+    margin: 0 auto 0.9em auto;
+    font-style: italic;
+  }
+
+  /* Hide the unused Follow button */
+  .btn--inverse { display: none !important; }
+
+  .author__urls-wrapper { width: 100%; }
+
+  .author__urls {
+    padding: 0.3em 0 0 0 !important;
+    margin: 0.4em 0 0 0 !important;
+    list-style: none;
+    border-top: 1px solid #ececec;
+
+    li {
+      margin: 0 0 0.15em 0 !important;
+      padding: 0 !important;
+      font-size: 0.88em;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.22s ease, transform 0.22s ease;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(180deg, #990000, #ffcc00);
+        transform: scaleY(0);
+        transform-origin: center;
+        transition: transform 0.25s ease;
+        border-radius: 2px;
+      }
+      &:hover {
+        background: linear-gradient(90deg, rgba(132,22,23,0.07) 0%, rgba(201,107,30,0.02) 100%);
+        transform: translateX(4px);
+      }
+      &:hover::before { transform: scaleY(0.65); }
+
+      a,
+      &.author__desktop {
+        display: block;
+        padding: 0.55em 0.7em 0.55em 0.85em;
+        color: #444 !important;
+        text-decoration: none !important;
+        line-height: 1.35;
+      }
+      a:hover { color: #990000 !important; }
+
+      i {
+        color: #999;
+        margin-right: 0.55em;
+        width: 1.2em;
+        text-align: center;
+        transition: color 0.22s ease, transform 0.22s ease;
+      }
+      &:hover i {
+        color: #990000;
+        transform: scale(1.18);
+      }
+
+      /* Info rows (location / employer): non-clickable, muted */
+      &.author__desktop {
+        color: #666 !important;
+        cursor: default;
+
+        &:hover {
+          transform: none;
+          background: transparent;
+
+          &::before { transform: scaleY(0); }
+          i { color: #999; transform: none; }
+        }
+      }
+    }
+
+    /* Divider between last info row and first link row */
+    li.author__desktop + li:not(.author__desktop) {
+      margin-top: 0.4em !important;
+      padding-top: 0.2em;
+      border-top: 1px dashed #eaeaea;
+    }
+  }
+}

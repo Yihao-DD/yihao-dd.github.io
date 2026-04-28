@@ -1,5 +1,22 @@
 {% include base_path %}
 
+{% assign is_zh = false %}
+{% if page.lang == "zh" or page.url contains "/zh" %}{% assign is_zh = true %}{% endif %}
+
+{% comment %} Build the matching EN / ZH URL for the language switcher. {% endcomment %}
+{% if is_zh %}
+  {% assign en_url = page.url | remove_first: "/zh" %}
+  {% if en_url == "" or en_url == "/" %}{% assign en_url = "/" %}{% endif %}
+  {% assign zh_url = page.url %}
+{% else %}
+  {% assign en_url = page.url %}
+  {% if page.url == "/" %}
+    {% assign zh_url = "/zh/" %}
+  {% else %}
+    {% assign zh_url = page.url | prepend: "/zh" %}
+  {% endif %}
+{% endif %}
+
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
@@ -10,13 +27,39 @@
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}
               {% assign domain = '' %}
-              {% else %}
+              {% assign nav_href = link.url %}
+            {% else %}
               {% assign domain = base_path %}
+              {% if is_zh %}
+                {% assign nav_href = link.url | prepend: "/zh" %}
+              {% else %}
+                {% assign nav_href = link.url %}
+              {% endif %}
             {% endif %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+            {% if is_zh and link.title_zh %}
+              {% assign nav_label = link.title_zh %}
+            {% else %}
+              {% assign nav_label = link.title %}
+            {% endif %}
+            <li class="masthead__menu-item"><a href="{{ domain }}{{ nav_href }}">{{ nav_label }}</a></li>
           {% endfor %}
         </ul>
         <ul class="hidden-links hidden"></ul>
+
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="theme-toggle__icon theme-toggle__sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle__icon theme-toggle__moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+
       </nav>
     </div>
   </div>
