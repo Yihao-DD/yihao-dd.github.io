@@ -31,12 +31,19 @@ $stars-large:  star-field(40,  2000, 1400, #c9d7ff);
 }
 
 /* --- Day-mode canvas: paper with USC Cardinal & Gold woven into the page ---
-     Halo opacities kept moderate (0.05–0.09) so the warmth is felt
-     but never loud; the linear-gradient base also carries a faint
-     Cardinal→cream→Gold vertical wash so the color reads as
-     part of the paper, not painted on top of it. */
+     Three layers, soft → strong:
+       (1) faint Cardinal+Gold paired diagonal pinstripes — a watermark
+           texture that reads as paper, not decoration
+       (2) Cardinal/Gold radial halos at moderate opacity for ambient warmth
+       (3) base linear-gradient with subtle Cardinal→cream→Gold vertical wash */
 body {
   background:
+    repeating-linear-gradient(45deg,
+      transparent 0, transparent 70px,
+      rgba(153,   0,   0, 0.022) 70px, rgba(153,   0,   0, 0.022) 71px,
+      transparent 71px, transparent 75px,
+      rgba(255, 204,   0, 0.028) 75px, rgba(255, 204,   0, 0.028) 76px,
+      transparent 76px, transparent 140px),
     radial-gradient(ellipse  800px 500px at  5%  -5%, rgba(153,   0,   0, 0.085), transparent 60%),
     radial-gradient(ellipse  700px 500px at 95%   5%, rgba(255, 204,   0, 0.100), transparent 60%),
     radial-gradient(ellipse  600px 400px at 100% 55%, rgba(153,   0,   0, 0.050), transparent 60%),
@@ -49,6 +56,19 @@ body {
       #f8f4ec 72%,
       rgba(255, 204,   0, 0.035) 100%) !important;
   background-attachment: fixed !important;
+}
+
+/* Sidebar info rows (location, employer): allow long text like
+   "University of Southern California" to wrap instead of clipping. */
+.hp-author .author__urls li,
+.hp-author .author__urls li.author__desktop,
+.hp-author .author__urls li a {
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+}
+.hp-author .author__urls li.author__desktop {
+  align-items: flex-start !important;
 }
 
 /* Single thin Cardinal→Gold ribbon at top — a quiet USC signature.
