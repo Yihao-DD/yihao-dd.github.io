@@ -33,12 +33,12 @@ $stars-large:  star-field(40,  2000, 1400, #c9d7ff);
 /* --- Day-mode canvas: paper-like with USC Cardinal & Gold ambient halos --- */
 body {
   background:
-    radial-gradient(ellipse  800px 500px at  5%  -5%, rgba(153,   0,   0, 0.075), transparent 60%),
-    radial-gradient(ellipse  700px 500px at 95%   5%, rgba(255, 204,   0, 0.090), transparent 60%),
-    radial-gradient(ellipse  600px 400px at 100% 55%, rgba(153,   0,   0, 0.045), transparent 60%),
-    radial-gradient(ellipse  500px 350px at   0% 50%, rgba(255, 204,   0, 0.040), transparent 60%),
-    radial-gradient(ellipse  800px 500px at   0% 100%, rgba(255, 204,   0, 0.065), transparent 60%),
-    radial-gradient(ellipse  900px 600px at 100% 100%, rgba(153,   0,   0, 0.060), transparent 60%),
+    radial-gradient(ellipse  800px 500px at  5%  -5%, rgba(153,   0,   0, 0.115), transparent 60%),
+    radial-gradient(ellipse  700px 500px at 95%   5%, rgba(255, 204,   0, 0.135), transparent 60%),
+    radial-gradient(ellipse  600px 400px at 100% 55%, rgba(153,   0,   0, 0.070), transparent 60%),
+    radial-gradient(ellipse  500px 350px at   0% 50%, rgba(255, 204,   0, 0.060), transparent 60%),
+    radial-gradient(ellipse  800px 500px at   0% 100%, rgba(255, 204,   0, 0.100), transparent 60%),
+    radial-gradient(ellipse  900px 600px at 100% 100%, rgba(153,   0,   0, 0.090), transparent 60%),
     linear-gradient(180deg, #fdfbf6 0%, #f7f3eb 100%) !important;
   background-attachment: fixed !important;
 }
@@ -52,8 +52,22 @@ html::before {
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
+  height: 6px;
   background: linear-gradient(90deg, #990000 0%, #ffcc00 100%);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* USC bottom stripe — Gold→Cardinal mirror at the very bottom.
+   Dark mode redefines html::after for nebula and overrides this. */
+html::after {
+  content: "";
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ffcc00 0%, #990000 100%);
   z-index: 1000;
   pointer-events: none;
 }
