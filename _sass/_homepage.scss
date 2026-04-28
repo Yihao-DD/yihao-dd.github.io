@@ -30,44 +30,38 @@ $stars-large:  star-field(40,  2000, 1400, #c9d7ff);
   to   { transform: translate3d(0, -40px, 0); }
 }
 
-/* --- Day-mode canvas: paper-like with USC Cardinal & Gold ambient halos --- */
+/* --- Day-mode canvas: paper with USC Cardinal & Gold woven into the page ---
+     Halo opacities kept moderate (0.05–0.09) so the warmth is felt
+     but never loud; the linear-gradient base also carries a faint
+     Cardinal→cream→Gold vertical wash so the color reads as
+     part of the paper, not painted on top of it. */
 body {
   background:
-    radial-gradient(ellipse  800px 500px at  5%  -5%, rgba(153,   0,   0, 0.115), transparent 60%),
-    radial-gradient(ellipse  700px 500px at 95%   5%, rgba(255, 204,   0, 0.135), transparent 60%),
-    radial-gradient(ellipse  600px 400px at 100% 55%, rgba(153,   0,   0, 0.070), transparent 60%),
-    radial-gradient(ellipse  500px 350px at   0% 50%, rgba(255, 204,   0, 0.060), transparent 60%),
-    radial-gradient(ellipse  800px 500px at   0% 100%, rgba(255, 204,   0, 0.100), transparent 60%),
-    radial-gradient(ellipse  900px 600px at 100% 100%, rgba(153,   0,   0, 0.090), transparent 60%),
-    linear-gradient(180deg, #fdfbf6 0%, #f7f3eb 100%) !important;
+    radial-gradient(ellipse  800px 500px at  5%  -5%, rgba(153,   0,   0, 0.085), transparent 60%),
+    radial-gradient(ellipse  700px 500px at 95%   5%, rgba(255, 204,   0, 0.100), transparent 60%),
+    radial-gradient(ellipse  600px 400px at 100% 55%, rgba(153,   0,   0, 0.050), transparent 60%),
+    radial-gradient(ellipse  500px 350px at   0% 50%, rgba(255, 204,   0, 0.045), transparent 60%),
+    radial-gradient(ellipse  800px 500px at   0% 100%, rgba(255, 204,   0, 0.075), transparent 60%),
+    radial-gradient(ellipse  900px 600px at 100% 100%, rgba(153,   0,   0, 0.065), transparent 60%),
+    linear-gradient(180deg,
+      rgba(153,   0,   0, 0.025) 0%,
+      #fdfbf6 28%,
+      #f8f4ec 72%,
+      rgba(255, 204,   0, 0.035) 100%) !important;
   background-attachment: fixed !important;
 }
 
-/* USC top stripe — Cardinal→Gold ribbon across the very top.
-   Uses html::before in light mode; dark mode redefines html::before
-   for the star nebula layer and naturally overrides this. */
+/* Single thin Cardinal→Gold ribbon at top — a quiet USC signature.
+   Dark mode redefines html::before for the star nebula and
+   naturally overrides this. */
 html::before {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 6px;
+  height: 2px;
   background: linear-gradient(90deg, #990000 0%, #ffcc00 100%);
-  z-index: 1000;
-  pointer-events: none;
-}
-
-/* USC bottom stripe — Gold→Cardinal mirror at the very bottom.
-   Dark mode redefines html::after for nebula and overrides this. */
-html::after {
-  content: "";
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #ffcc00 0%, #990000 100%);
   z-index: 1000;
   pointer-events: none;
 }
