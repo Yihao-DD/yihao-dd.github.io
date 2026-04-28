@@ -25,7 +25,7 @@ I'm **Yihao Wang** (王奕豪) — you can also call me **Ian**. I'm currently p
 
 Before USC, I earned my B.Sc. in Computer Science from **Hong Kong Baptist University**, where I co-authored work on fine-grained image classification with Transformer-based methods.
 
-My broader research interest is **deep learning for healthcare** — extracting clinically meaningful signals from messy biological data — and I'm increasingly drawn to **large language models** for medical reasoning and scientific discovery.
+My broader research interests are **deep learning for healthcare** — extracting clinically meaningful signals from messy biological data — and **large language models**, particularly their internals, alignment, and safety.
 
 </div>
 
@@ -37,12 +37,12 @@ My broader research interest is **deep learning for healthcare** — extracting 
     <div class="hp-card-desc">Biomedical signal modeling, medical imaging, and clinical machine learning.</div>
   </div>
   <div class="hp-card">
-    <div class="hp-card-title">LLMs in Medicine</div>
-    <div class="hp-card-desc">Medical reasoning, scientific discovery, and tooling for healthcare research.</div>
-  </div>
-  <div class="hp-card">
     <div class="hp-card-title">Computer Vision for Biology</div>
     <div class="hp-card-desc">Fine-grained recognition, image registration, and biomedical 3D reconstruction.</div>
+  </div>
+  <div class="hp-card">
+    <div class="hp-card-title">LLMs &amp; AI Safety</div>
+    <div class="hp-card-desc">Foundation model internals, alignment, and safety research.</div>
   </div>
 </div>
 
