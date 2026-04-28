@@ -1142,6 +1142,11 @@ html[data-theme="dark"] .hp-pub-title a:focus {
       position: relative;
       overflow: hidden;
       transition: background 0.22s ease, transform 0.22s ease;
+      /* Lock every row to the same height so info rows (location/USC)
+         and link rows (Email/Scholar/Github/LinkedIn) read identically. */
+      min-height: 2.6em !important;
+      display: flex !important;
+      align-items: stretch !important;
 
       &::before {
         content: "";
@@ -1164,8 +1169,10 @@ html[data-theme="dark"] .hp-pub-title a:focus {
 
       a,
       &.author__desktop {
-        display: block;
-        padding: 0.55em 0.7em 0.55em 0.85em !important;
+        display: flex !important;
+        flex: 1 1 auto !important;
+        align-items: center !important;
+        padding: 0.45em 0.7em 0.45em 0.85em !important;
         color: #444 !important;
         text-decoration: none !important;
         line-height: 1.35;
