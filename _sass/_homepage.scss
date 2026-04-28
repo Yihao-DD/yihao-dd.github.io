@@ -1178,11 +1178,21 @@ html[data-theme="dark"] .hp-pub-title a:focus {
       }
     }
 
-    /* Divider between last info row and first link row */
+    /* Treat info rows (location, USC) the same as link rows so the
+       whole sidebar list reads with one consistent rhythm. */
+    li.author__desktop {
+      padding: 0.55em 0.7em 0.55em 0.85em !important;
+      margin: 0 0 0.35em 0 !important;
+    }
+    /* No divider between the last info row and the first link row */
     li.author__desktop + li:not(.author__desktop) {
-      margin-top: 0.4em !important;
-      padding-top: 0.2em;
-      border-top: 1px dashed #eaeaea;
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+      border-top: none !important;
+    }
+    /* Slightly more breathing room between every row for an even list */
+    li {
+      margin-bottom: 0.35em !important;
     }
   }
 }
