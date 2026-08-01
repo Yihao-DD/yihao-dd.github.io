@@ -48,6 +48,16 @@ I work on self-evolving LLM agents. My recent work is on one narrow step of that
 
 <div class="hp-bio" markdown="1">
 
+<div class="hp-pub-title" style="font-size:1.08em; margin-bottom:0.2em;">Capability Retention in Self-Distillation</div>
+
+<p style="margin:0 0 0.9em 0;"><span class="hp-pub-badge hp-pub-badge-review">In progress</span></p>
+
+If an agent is walked through a failure with temporary support and you then train on the repaired trajectory, did it learn the capability or did it learn to rely on the support? I keep the support out of the student's input entirely and remove it at evaluation time. Whether the capability survives that removal is the result.
+
+</div>
+
+<div class="hp-bio" markdown="1">
+
 <div class="hp-pub-title" style="font-size:1.08em; margin-bottom:0.2em;">SAGE: A Statistical Acceptance Gate for Self-Evolving Agents</div>
 
 <p style="margin:0 0 0.9em 0;"><span class="hp-pub-badge hp-pub-badge-review">Under review</span> <span style="font-size:0.88em; color:#777;">2026</span></p>
@@ -55,16 +65,6 @@ I work on self-evolving LLM agents. My recent work is on one narrow step of that
 Self-evolving agents improve by editing a skill document. Almost all prior work went into proposing better edits, and the accept-or-reject step stayed a one-line rule: keep the edit if the average validation score improves. SAGE replaces that rule. It runs the current and edited skill on the same validation items and counts what each edit fixed against what it broke. A break costs more than a fix, and the edit only goes through when the fixes are statistically convincing. When the evidence is thin the gate declines and keeps the current skill.
 
 Tested on 5 benchmarks and 4 open-source models under a matched budget. Harmful edits dropped to zero in 13 of the 20 settings, and the gate produced the best final skill in all 20, beating the previous state of the art by 8.73 points on average.
-
-</div>
-
-<div class="hp-bio" markdown="1">
-
-<div class="hp-pub-title" style="font-size:1.08em; margin-bottom:0.2em;">Capability Retention in Self-Distillation</div>
-
-<p style="margin:0 0 0.9em 0;"><span class="hp-pub-badge hp-pub-badge-review">In progress</span></p>
-
-If an agent is walked through a failure with temporary support and you then train on the repaired trajectory, did it learn the capability or did it learn to rely on the support? I keep the support out of the student's input entirely and remove it at evaluation time. Whether the capability survives that removal is the result.
 
 </div>
 
