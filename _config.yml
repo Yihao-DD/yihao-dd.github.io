@@ -11,7 +11,7 @@ locale                   : "en-US"
 title                    : "Yihao Wang"
 title_separator          : "·"
 name                     : &name "Yihao Wang"
-description              : &description "Yihao Wang — M.S. student in Applied Data Science at the University of Southern California. Self-evolving LLM agents and the criteria that decide when an agent should keep a change to itself."
+description              : &description "Yihao Wang — Research Assistant at Peking University Shenzhen Graduate School; M.S. in Applied Data Science, University of Southern California. Network root-cause analysis and self-evolving LLM agents."
 url                      : https://yihao-dd.github.io
 baseurl                  : ""
 repository               : "Yihao-DD/yihao-dd.github.io"
@@ -24,9 +24,9 @@ author:
   avatar           : "profile.png"
   name             : "Yihao Wang"
   pronouns         : "he/him"
-  bio              : "M.S. student at USC. Self-evolving LLM agents."
-  location         : "Los Angeles, CA"
-  employer         : "University of Southern California"
+  bio              : "Research Assistant, Peking University Shenzhen Graduate School."
+  location         : "Shenzhen, China"
+  employer         : "Peking University Shenzhen Graduate School"
   email            : "ywang642@usc.edu"
 
   # Academic websites

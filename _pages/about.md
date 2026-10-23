@@ -1,7 +1,7 @@
 ---
 permalink: /
 title: ""
-excerpt: "Yihao Wang — M.S. student at the University of Southern California. Self-evolving LLM agents."
+excerpt: "Yihao Wang — Research Assistant at Peking University Shenzhen Graduate School; M.S. in Applied Data Science, University of Southern California. Network root-cause analysis and self-evolving LLM agents."
 author_profile: true
 redirect_from: 
   - /about/
@@ -13,7 +13,7 @@ redirect_from:
 
 # 👋 Hi, I'm Yihao Wang
 
-<p class="hp-sub">M.S. Student · Applied Data Science · University of Southern California</p>
+<p class="hp-sub">Research Assistant · Peking University Shenzhen Graduate School</p>
 
 <span class="hp-accent"></span>
 
@@ -21,9 +21,9 @@ redirect_from:
 
 <div class="hp-bio" markdown="1">
 
-I'm Yihao Wang (王奕豪), also known as Ian. I'm an M.S. student in Applied Data Science at the University of Southern California.
+I'm Yihao Wang (王奕豪), also known as Ian. I'm a research assistant at Peking University Shenzhen Graduate School. I completed my M.S. in Applied Data Science at the University of Southern California in August 2026, and I'm applying to Ph.D. programs for 2027.
 
-I work on self-evolving LLM agents. My recent work is on one narrow step of that loop: how an agent decides to keep a change it just made to itself.
+My current work is root-cause analysis for data-center networks: treating a root cause as a hypothesis that can be replayed and checked on a world model before anyone acts on it. Before that I worked on self-evolving LLM agents — when an agent should keep a change to itself (SAGE), and how verified repairs can be distilled into its weights (SAVE).
 
 </div>
 
@@ -31,16 +31,16 @@ I work on self-evolving LLM agents. My recent work is on one narrow step of that
 
 <div class="hp-interests">
   <div class="hp-card">
+    <div class="hp-card-title">Network Root-Cause Analysis</div>
+    <div class="hp-card-desc">Causes as testable hypotheses: replay them on a physics-structured world model before acting on the network.</div>
+  </div>
+  <div class="hp-card">
     <div class="hp-card-title">Self-Evolving LLM Agents</div>
-    <div class="hp-card-desc">Agents that improve by editing their own skills or retraining their own weights.</div>
+    <div class="hp-card-desc">When an update to an agent should be accepted, and what it is allowed to break.</div>
   </div>
   <div class="hp-card">
-    <div class="hp-card-title">Criteria for Self-Modification</div>
-    <div class="hp-card-desc">When an update should be accepted, and what it is allowed to break.</div>
-  </div>
-  <div class="hp-card">
-    <div class="hp-card-title">Evaluation Design</div>
-    <div class="hp-card-desc">Verifier-based scoring, matched budgets, and testing for capability retention.</div>
+    <div class="hp-card-title">Verified Self-Distillation</div>
+    <div class="hp-card-desc">Turning a model's own failures into verifier-approved training signal, without an external teacher.</div>
   </div>
 </div>
 
@@ -48,11 +48,11 @@ I work on self-evolving LLM agents. My recent work is on one narrow step of that
 
 <div class="hp-bio" markdown="1">
 
-<div class="hp-pub-title" style="font-size:1.08em; margin-bottom:0.2em;">Capability Retention in Self-Distillation</div>
+<div class="hp-pub-title" style="font-size:1.08em; margin-bottom:0.2em;">Network Root-Cause Analysis</div>
 
-<p style="margin:0 0 0.9em 0;"><span class="hp-pub-badge hp-pub-badge-review">In progress</span></p>
+<p style="margin:0 0 0.9em 0;"><span class="hp-pub-badge hp-pub-badge-review">Current work</span> <span style="font-size:0.88em; color:#777;">Peking University · since Sep 2026</span></p>
 
-If an agent is walked through a failure with temporary support and you then train on the repaired trajectory, did it learn the capability or did it learn to rely on the support? I keep the support out of the student's input entirely and remove it at evaluation time. Whether the capability survives that removal is the result.
+Root-cause analysis in data-center networks today outputs a label and has no way to check it; a wrong action, such as closing a lossy link, can turn loss into congestion. I treat a root cause as a causal claim: undo it, and the symptom should disappear. The world model pairs an analytic skeleton — water-filling bandwidth allocation, DCTCP, hop-by-hop loss — in which each fault enters through an explicit term, with a Transformer residual that learns only what the skeleton misses; it is trained on paired ns-3 twin runs with shared seeds. Inference runs propose → verify → abstain → undo: an amortized head nominates 129 candidate causes including "no fault", replay likelihood scores each one, the system abstains when the top causes are too close to call, and undoing the cause in the model predicts whether the symptom goes away.
 
 </div>
 
@@ -60,11 +60,23 @@ If an agent is walked through a failure with temporary support and you then trai
 
 <div class="hp-pub-title" style="font-size:1.08em; margin-bottom:0.2em;">SAGE: A Statistical Acceptance Gate for Self-Evolving Agents</div>
 
-<p style="margin:0 0 0.9em 0;"><span class="hp-pub-badge hp-pub-badge-review">Under review</span> <span style="font-size:0.88em; color:#777;">2026</span></p>
+<p style="margin:0 0 0.9em 0;"><span class="hp-pub-badge hp-pub-badge-review">Under review</span> <span style="font-size:0.88em; color:#777;">AAAI 2027 · first author</span></p>
 
 Self-evolving agents improve by editing a skill document. Almost all prior work went into proposing better edits, and the accept-or-reject step stayed a one-line rule: keep the edit if the average validation score improves. SAGE replaces that rule. It runs the current and edited skill on the same validation items and counts what each edit fixed against what it broke. A break costs more than a fix, and the edit only goes through when the fixes are statistically convincing. When the evidence is thin the gate declines and keeps the current skill.
 
-Tested on 5 benchmarks and 4 open-source models under a matched budget. Harmful edits dropped to zero in 13 of the 20 settings, and the gate produced the best final skill in all 20, beating the previous state of the art by 8.73 points on average.
+Tested on 5 benchmarks and 4 open-source models under a matched budget. The regression rate fell in 19 of 20 settings and dropped to zero in 13, and the gate produced the best final skill in all 20, beating the previous state of the art by 8.73 points on average.
+
+</div>
+
+<div class="hp-bio" markdown="1">
+
+<div class="hp-pub-title" style="font-size:1.08em; margin-bottom:0.2em;">SAVE: Verified Self-Distillation for LLM Agents</div>
+
+<p style="margin:0 0 0.9em 0;"><span class="hp-pub-badge hp-pub-badge-review">Paper in progress</span> <span style="font-size:0.88em; color:#777;">first author</span></p>
+
+STaR-style self-distillation can only learn from trajectories the current model already samples correctly; inputs it never solves are discarded by rejection sampling. SAVE has an agent distill the recurring failure patterns into a temporary harness, regenerates those inputs with the harness, keeps only the outputs a deterministic verifier accepts, and distills them together with the original successes on scaffold-free inputs. The harness is removed before training and evaluation, so what survives is in the weights.
+
+Over five rounds of function-calling self-distillation under matched data, token and step budgets, scaffold-free accuracy reached 95.9% (4,896/5,106), against 71.9% (3,673/5,106) for self-distillation on self-sampled successes alone. Round 1 was a near tie; the gap widened every round to 24.0 points.
 
 </div>
 
@@ -78,10 +90,19 @@ Tested on 5 benchmarks and 4 open-source models under a matched budget. Harmful 
   <div class="hp-pub-group-title">Under Review</div>
   <ol class="hp-pub-list">
     <li class="hp-pub">
+      <div class="hp-pub-authors"><strong>Yihao Wang</strong> et al.</div>
       <div class="hp-pub-title">SAGE: A Statistical Acceptance Gate for Self-Evolving Agents</div>
       <div class="hp-pub-venue">
         <span class="hp-pub-badge hp-pub-badge-review">Under review</span>
-        2026
+        AAAI 2027
+      </div>
+    </li>
+    <li class="hp-pub">
+      <div class="hp-pub-authors">Linhan Xia, Rui Liu, Zhaofeng Zhang, <strong>Yihao Wang</strong>, Shengxin Zhu</div>
+      <div class="hp-pub-title">LoCA: Forward-Only LLM Tuning after One-Shot Calibration with Local Credit Assignment</div>
+      <div class="hp-pub-venue">
+        <span class="hp-pub-badge hp-pub-badge-review">Under review</span>
+        AAAI 2027
       </div>
     </li>
   </ol>
@@ -127,14 +148,23 @@ Before moving to language models I worked on biomedical modeling and imaging.
 
 <ul class="hp-news">
   <li>
-    <span class="hp-date">Jul 2026</span>
-    <span class="hp-badge">Submitted</span>
-    <strong>SAGE</strong> submitted for review.
+    <span class="hp-date">Sep 2026</span>
+    <span class="hp-badge">RA</span>
+    Joined <strong>Peking University Shenzhen Graduate School</strong> as a Research Assistant; started work on <strong>network root-cause analysis</strong>.
+  </li>
+  <li>
+    <span class="hp-date">Aug 2026</span>
+    <span class="hp-badge">Graduated</span>
+    Completed the M.S. in Applied Data Science at the <strong>University of Southern California</strong>.
   </li>
   <li>
     <span class="hp-date">Jul 2026</span>
-    <span class="hp-badge">Current</span>
-    Started work on <strong>capability retention in self-distillation</strong>.
+    <span class="hp-badge">Submitted</span>
+    <strong>SAGE</strong> submitted; now under review at <strong>AAAI 2027</strong>, together with <strong>LoCA</strong> (co-author).
+  </li>
+  <li>
+    <span class="hp-date">Jun 2026</span>
+    Started work on <strong>SAVE</strong>, verified self-distillation for LLM agents.
   </li>
   <li>
     <span class="hp-date">May 2026</span>
@@ -156,22 +186,26 @@ Before moving to language models I worked on biomedical modeling and imaging.
   </li>
 </ul>
 
-<div class="hp-section-title"><span class="hp-ico">🎓</span> Education</div>
+<div class="hp-section-title"><span class="hp-ico">🎓</span> Education & Appointments</div>
 
 <ul class="hp-edu">
   <li>
-    <span class="hp-edu-school">University of Southern California</span> — M.S. in Applied Data Science
-    <div class="hp-edu-meta">Los Angeles, CA, USA · In progress</div>
+    <span class="hp-edu-school">Peking University Shenzhen Graduate School</span> — Research Assistant
+    <div class="hp-edu-meta">Shenzhen, China · Sep 2026 – present</div>
   </li>
   <li>
-    <span class="hp-edu-school">Hong Kong Baptist University</span> — B.Sc. (Honours) in Computer Science
+    <span class="hp-edu-school">University of Southern California</span> — M.S. in Applied Data Science
+    <div class="hp-edu-meta">Los Angeles, CA, USA · Jan 2025 – Aug 2026</div>
+  </li>
+  <li>
+    <span class="hp-edu-school">Hong Kong Baptist University</span> — B.Sc. (Honours) in Computer Science and Technology
     <div class="hp-edu-meta">Zhuhai, China · 2020 – 2024</div>
   </li>
 </ul>
 
 <div class="hp-cta" markdown="1">
 
-💬 **Get in touch.** If my work is close to yours, or you think it is wrong somewhere, I'd like to hear about it. Reach me at [ywang642@usc.edu](mailto:ywang642@usc.edu).
+💬 **Get in touch.** If my work is close to yours, or you think it is wrong somewhere, I'd like to hear about it. Reach me at [ywang642@usc.edu](mailto:ywang642@usc.edu). My CV is [here](/files/Yihao_Wang_CV.pdf).
 
 ✌️ **Fight On!**
 
