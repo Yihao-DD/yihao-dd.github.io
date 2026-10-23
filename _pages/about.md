@@ -21,9 +21,9 @@ redirect_from:
 
 <div class="hp-bio" markdown="1">
 
-I'm Yihao Wang (王奕豪), also known as Ian. I'm a research assistant at Peking University Shenzhen Graduate School. I completed my M.S. in Applied Data Science at the University of Southern California in August 2026, and I'm applying to Ph.D. programs for 2027.
+I'm **Yihao Wang** (王奕豪) — Ian to most people. I'm a research assistant at **Peking University Shenzhen Graduate School**, and I'm applying to Ph.D. programs for fall 2027. I finished my M.S. in Applied Data Science at the **University of Southern California** in August 2026, after a B.Sc. in Computer Science at **Hong Kong Baptist University**.
 
-My current work is root-cause analysis for data-center networks: treating a root cause as a hypothesis that can be replayed and checked on a world model before anyone acts on it. Before that I worked on self-evolving LLM agents — when an agent should keep a change to itself (SAGE), and how verified repairs can be distilled into its weights (SAVE).
+What I keep coming back to is systems that are supposed to improve on their own — a network that diagnoses its own faults, an agent that rewrites its own skills, a model that trains on its own outputs — and the question of which changes they should trust. Right now that means **root-cause analysis for data-center networks**: a suspected cause is replayed on a physics-structured world model and undone there before anyone acts on the real network. Earlier, **SAGE** asked when a self-evolving agent should accept an edit to itself, and **SAVE** asked how a model can learn from its own failures without an external teacher.
 
 </div>
 
@@ -31,16 +31,16 @@ My current work is root-cause analysis for data-center networks: treating a root
 
 <div class="hp-interests">
   <div class="hp-card">
-    <div class="hp-card-title">Network Root-Cause Analysis</div>
-    <div class="hp-card-desc">Causes as testable hypotheses: replay them on a physics-structured world model before acting on the network.</div>
+    <div class="hp-card-title"><span class="hp-card-star" aria-hidden="true">★</span> Network Root-Cause Analysis <span class="hp-card-note">Current work</span></div>
+    <div class="hp-card-desc">Replay a suspected cause on a physics-structured world model, undo it, and check that the symptom disappears — before touching the network.</div>
   </div>
   <div class="hp-card">
     <div class="hp-card-title">Self-Evolving LLM Agents</div>
-    <div class="hp-card-desc">When an update to an agent should be accepted, and what it is allowed to break.</div>
+    <div class="hp-card-desc">Which edits an agent should accept to its own skills, judged on paired per-item evidence rather than an average score.</div>
   </div>
   <div class="hp-card">
     <div class="hp-card-title">Verified Self-Distillation</div>
-    <div class="hp-card-desc">Turning a model's own failures into verifier-approved training signal, without an external teacher.</div>
+    <div class="hp-card-desc">Turning a model's own failures into verifier-approved training signal that still holds once the scaffold is removed.</div>
   </div>
 </div>
 
@@ -52,7 +52,7 @@ My current work is root-cause analysis for data-center networks: treating a root
 
 <p style="margin:0 0 0.9em 0;"><span class="hp-pub-badge hp-pub-badge-review">Current work</span> <span style="font-size:0.88em; color:#777;">Peking University · since Sep 2026</span></p>
 
-Root-cause analysis in data-center networks today outputs a label and has no way to check it; a wrong action, such as closing a lossy link, can turn loss into congestion. I treat a root cause as a causal claim: undo it, and the symptom should disappear. The world model pairs an analytic skeleton — water-filling bandwidth allocation, DCTCP, hop-by-hop loss — in which each fault enters through an explicit term, with a Transformer residual that learns only what the skeleton misses; it is trained on paired ns-3 twin runs with shared seeds. Inference runs propose → verify → abstain → undo: an amortized head nominates 129 candidate causes including "no fault", replay likelihood scores each one, the system abstains when the top causes are too close to call, and undoing the cause in the model predicts whether the symptom goes away.
+Root-cause analysis in data-center networks today ends with a label and no way to check it, and a wrong action — closing a lossy link, say — can turn loss into congestion. I treat a root cause as a causal claim: undo it, and the symptom should disappear. To make that claim checkable, the world model combines an analytic skeleton (water-filling bandwidth allocation, DCTCP, hop-by-hop loss), in which every fault enters through an explicit term, with a Transformer residual that learns only what the skeleton misses; it is trained on paired ns-3 twin runs that share seeds, so the effect of a fault or a repair is causal rather than correlational. Inference is propose → verify → abstain → undo: an amortized head nominates 129 candidate causes, "no fault" included; replay likelihood scores each one; the system abstains when the top candidates are too close to call; and undoing the cause in the model predicts whether the symptom actually goes away.
 
 </div>
 
@@ -62,9 +62,9 @@ Root-cause analysis in data-center networks today outputs a label and has no way
 
 <p style="margin:0 0 0.9em 0;"><span class="hp-pub-badge hp-pub-badge-review">Under review</span> <span style="font-size:0.88em; color:#777;">AAAI 2027 · first author</span></p>
 
-Self-evolving agents improve by editing a skill document. Almost all prior work went into proposing better edits, and the accept-or-reject step stayed a one-line rule: keep the edit if the average validation score improves. SAGE replaces that rule. It runs the current and edited skill on the same validation items and counts what each edit fixed against what it broke. A break costs more than a fix, and the edit only goes through when the fixes are statistically convincing. When the evidence is thin the gate declines and keeps the current skill.
+Self-evolving agents improve by editing a skill document. Almost all prior work went into proposing better edits, while the accept-or-reject step stayed a one-line rule: keep the edit if the average validation score goes up. That rule hides what an edit actually did — it can fix a few items while breaking ones the skill already solved — and on a small, noisy validation set it rewards lucky edits as readily as good ones. SAGE runs the current and the edited skill on the same items, counts wins against regressions with a regression costing more than a win, and commits only when a one-sided paired test says the wins are not noise; otherwise it keeps the current skill. The gate reduces exactly to the standard rule at a boundary setting of its parameters.
 
-Tested on 5 benchmarks and 4 open-source models under a matched budget. The regression rate fell in 19 of 20 settings and dropped to zero in 13, and the gate produced the best final skill in all 20, beating the previous state of the art by 8.73 points on average.
+On 5 benchmarks and 4 open-source models under a matched budget, the regression rate fell in 19 of 20 settings and reached zero in 13, and the final skill scored highest in all 20 — 8.73 points above the previous state of the art on average.
 
 </div>
 
@@ -74,9 +74,9 @@ Tested on 5 benchmarks and 4 open-source models under a matched budget. The regr
 
 <p style="margin:0 0 0.9em 0;"><span class="hp-pub-badge hp-pub-badge-review">Paper in progress</span> <span style="font-size:0.88em; color:#777;">first author</span></p>
 
-STaR-style self-distillation can only learn from trajectories the current model already samples correctly; inputs it never solves are discarded by rejection sampling. SAVE has an agent distill the recurring failure patterns into a temporary harness, regenerates those inputs with the harness, keeps only the outputs a deterministic verifier accepts, and distills them together with the original successes on scaffold-free inputs. The harness is removed before training and evaluation, so what survives is in the weights.
+STaR-style self-distillation can only learn from trajectories the current model already samples correctly; the inputs it never solves are discarded by rejection sampling, so the model keeps reinforcing what it can already do. SAVE has an agent read those failures, distill the recurring patterns into a temporary harness, and regenerate the failed inputs with the harness in place; only outputs a deterministic verifier accepts are kept, and they are distilled together with the original successes on the plain, scaffold-free inputs. The harness is gone before training and evaluation, so whatever survives is in the weights.
 
-Over five rounds of function-calling self-distillation under matched data, token and step budgets, scaffold-free accuracy reached 95.9% (4,896/5,106), against 71.9% (3,673/5,106) for self-distillation on self-sampled successes alone. Round 1 was a near tie; the gap widened every round to 24.0 points.
+Over five rounds of function-calling self-distillation under matched data, token and step budgets, scaffold-free accuracy reached 95.9% (4,896/5,106), against 71.9% (3,673/5,106) for self-distillation on self-sampled successes alone; a near tie in round 1 widened every round to a 24.0-point gap.
 
 </div>
 
@@ -113,15 +113,15 @@ Over five rounds of function-calling self-distillation under matched data, token
   <ol class="hp-pub-list">
     <li class="hp-pub">
       <div class="hp-pub-authors">Jiaqi Li, Qi Pan, <strong>Yihao Wang</strong></div>
-      <div class="hp-pub-title">Sentiment Analysis Applied on Amazon Reviews</div>
+      <div class="hp-pub-title"><a href="https://doi.org/10.54254/2755-2721/44/20230079" target="_blank" rel="noopener">Sentiment Analysis Applied on Amazon Reviews</a></div>
       <div class="hp-pub-venue">
         <span class="hp-pub-badge hp-pub-badge-ei">EI</span>
-        International Conference on Machine Learning and Automation (ICMLA 2024)
+        International Conference on Machine Learning and Automation, in <em>Applied and Computational Engineering</em> 44 (2024)
       </div>
     </li>
     <li class="hp-pub">
       <div class="hp-pub-authors">Jianxin Ye, Zeqiao Huang, <strong>Yihao Wang</strong>, Jinming Chen</div>
-      <div class="hp-pub-title">Fine-Grained Classification of Dog Breeds Based on the HERBS Method</div>
+      <div class="hp-pub-title"><a href="https://ieeexplore.ieee.org/document/10441854" target="_blank" rel="noopener">Fine-Grained Classification of Dog Breeds Based on the HERBS Method</a></div>
       <div class="hp-pub-venue">
         <span class="hp-pub-badge hp-pub-badge-ei">EI</span>
         IEEE International Conference on Electrical, Automation and Computer Engineering (ICEACE 2023)
@@ -134,9 +134,9 @@ Over five rounds of function-calling self-distillation under matched data, token
 
 <div class="hp-bio" markdown="1">
 
-Before moving to language models I worked on biomedical modeling and imaging.
+Before language models I worked on biomedical modeling and imaging. The lesson that stuck: the input representation, not the model, usually sets the ceiling.
 
-**Muscle force prediction without EMG.** Five architectures all stalled at R² 0.724 when given joint angles alone. Adding explicit muscle fiber length as an input took it to 0.908. What limited the models was the input representation, not their capacity.
+**Muscle force prediction without EMG.** Five architectures all stalled at R² 0.724 when given joint angles alone. Adding explicit muscle fiber length as an input took it to 0.908.
 
 **Ultrasound imaging.** Built the Python pipeline for 3D reconstruction of mouse brain vasculature from plane-wave slices at USC's BioAcoustic Imaging Lab.
 
