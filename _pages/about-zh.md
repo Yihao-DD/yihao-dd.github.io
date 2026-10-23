@@ -161,14 +161,6 @@ STaR 式的自蒸馏只能从当前模型已经能采样正确的轨迹里学习
     <strong>SAGE</strong>（第一作者）与 <strong>LoCA</strong>（合作者）投稿 <strong>AAAI 2027</strong>，审稿中。
   </li>
   <li>
-    <span class="hp-date">2026 年 6 月</span>
-    开始 <strong>SAVE</strong>（面向 LLM 智能体的可验证自蒸馏）的工作。
-  </li>
-  <li>
-    <span class="hp-date">2026 年 5 月</span>
-    开始 <strong>SAGE</strong>（自进化智能体的统计接受门）的工作。
-  </li>
-  <li>
     <span class="hp-date">2025 年 3 月</span>
     <span class="hp-badge">RA</span>
     加入南加州大学 <strong>BioAcoustic Imaging Lab</strong> 担任研究助理。
@@ -176,11 +168,6 @@ STaR 式的自蒸馏只能从当前模型已经能采样正确的轨迹里学习
   <li>
     <span class="hp-date">2025 年 1 月</span>
     进入<strong>南加州大学</strong>攻读应用数据科学硕士。
-  </li>
-  <li>
-    <span class="hp-date">2023 年 12 月</span>
-    <span class="hp-badge">已录用</span>
-    论文 <strong>"Fine-Grained Classification of Dog Breeds Based on the HERBS Method"</strong> 被 <strong>IEEE ICEACE 2023</strong> 录用（EI 检索）。
   </li>
 </ul>
 

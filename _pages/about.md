@@ -163,14 +163,6 @@ Before language models I worked on biomedical modeling and imaging. The lesson t
     <strong>SAGE</strong> (first author) and <strong>LoCA</strong> (co-author) submitted to <strong>AAAI 2027</strong>; both under review.
   </li>
   <li>
-    <span class="hp-date">Jun 2026</span>
-    Started work on <strong>SAVE</strong>, verified self-distillation for LLM agents.
-  </li>
-  <li>
-    <span class="hp-date">May 2026</span>
-    Started work on <strong>SAGE</strong>, a statistical acceptance gate for self-evolving agents.
-  </li>
-  <li>
     <span class="hp-date">Mar 2025</span>
     <span class="hp-badge">RA</span>
     Joined the <strong>BioAcoustic Imaging Lab</strong> at USC as a Graduate Research Assistant.
@@ -178,11 +170,6 @@ Before language models I worked on biomedical modeling and imaging. The lesson t
   <li>
     <span class="hp-date">Jan 2025</span>
     Began the M.S. in Applied Data Science at the <strong>University of Southern California</strong>.
-  </li>
-  <li>
-    <span class="hp-date">Dec 2023</span>
-    <span class="hp-badge">Accepted</span>
-    Paper <strong>"Fine-Grained Classification of Dog Breeds Based on the HERBS Method"</strong> accepted at <strong>IEEE ICEACE 2023</strong> (EI indexed).
   </li>
 </ul>
 
