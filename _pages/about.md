@@ -21,7 +21,7 @@ redirect_from:
 
 <div class="hp-bio" markdown="1">
 
-I'm **Yihao Wang** (王奕豪) — Ian to most people. I'm a research assistant at **Peking University Shenzhen Graduate School**, and I'm applying to Ph.D. programs for fall 2027. I finished my M.S. in Applied Data Science at the **University of Southern California** in August 2026, after a B.Sc. in Computer Science at **Hong Kong Baptist University**.
+I'm **Yihao Wang** (王奕豪), and I go by Ian. I'm a research assistant at **Peking University Shenzhen Graduate School**, and I'm applying to Ph.D. programs for fall 2027. I finished my M.S. in Applied Data Science at the **University of Southern California** in August 2026, after a B.Sc. in Computer Science at **Hong Kong Baptist University**.
 
 What I keep coming back to is systems that are supposed to improve on their own — a network that diagnoses its own faults, an agent that rewrites its own skills, a model that trains on its own outputs — and the question of which changes they should trust. Right now that means **root-cause analysis for data-center networks**: a suspected cause is replayed on a physics-structured world model and undone there before anyone acts on the real network. Earlier, **SAGE** asked when a self-evolving agent should accept an edit to itself, and **SAVE** asked how a model can learn from its own failures without an external teacher.
 
