@@ -158,9 +158,9 @@ Before moving to language models I worked on biomedical modeling and imaging.
     Completed the M.S. in Applied Data Science at the <strong>University of Southern California</strong>.
   </li>
   <li>
-    <span class="hp-date">Jul 2026</span>
+    <span class="hp-date">Aug 2026</span>
     <span class="hp-badge">Submitted</span>
-    <strong>SAGE</strong> submitted; now under review at <strong>AAAI 2027</strong>, together with <strong>LoCA</strong> (co-author).
+    <strong>SAGE</strong> (first author) and <strong>LoCA</strong> (co-author) submitted to <strong>AAAI 2027</strong>; both under review.
   </li>
   <li>
     <span class="hp-date">Jun 2026</span>
