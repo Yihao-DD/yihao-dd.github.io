@@ -387,6 +387,10 @@ html[data-theme="dark"] {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45) !important;
   }
   .hp-card-title { color: #eceff5 !important; }
+  .hp-card-note {
+    background: rgba(255, 204, 0, 0.16) !important;
+    color: #ffd84d !important;
+  }
   .hp-card-desc  { color: #aeb1b9 !important; }
 
   /* --- news --- */
@@ -733,28 +737,7 @@ html[data-theme="dark"] .sidebar .author__urls {
   .hp-hero h1 { font-size: 1.22em !important; }
   .hp-hero .hp-sub { font-size: 0.85em; }
 
-  /* Hide long site title on ultra-narrow — the page itself is obvious */
-  .masthead__menu-item--lg a {
-    font-size: 0 !important;
-  }
-  .masthead__menu-item--lg a::after {
-    content: "YW";
-    font-size: 1rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #990000 0%, #ffcc00 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: 1px;
-  }
-
-  /* Dark-mode variant for the LX monogram */
-  html[data-theme="dark"] .masthead__menu-item--lg a::after {
-    background: linear-gradient(135deg, #ffd700 0%, #ffe066 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+  /* The masthead now shows the YW icon instead of the site title; nothing to hide here. */
 }
 
 
@@ -839,6 +822,21 @@ html[data-theme="dark"] .sidebar .author__urls {
   font-size: 0.98em;
   margin-bottom: 0.25em;
   color: #222;
+}
+.hp-card-star {
+  color: #b8860b;
+}
+.hp-card-note {
+  display: inline-block;
+  margin-left: 0.45em;
+  padding: 0.16em 0.5em;
+  border-radius: 999px;
+  background: rgba(153, 0, 0, 0.08);
+  color: #990000;
+  font-size: 0.72em;
+  font-weight: 700;
+  line-height: 1.35;
+  vertical-align: 0.12em;
 }
 .hp-card-desc {
   font-size: 0.88em;
